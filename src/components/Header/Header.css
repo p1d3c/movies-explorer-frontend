@@ -1,13 +1,18 @@
 .header {
+  height: 74px;
+  margin: 0;
+
+  background-color: var(--color-tiber);
+}
+
+.header__limiter {
   display: flex;
   justify-content: space-between;
   max-width: 1280px;
-  height: 74px;
-  padding: 18px 70px;
   margin: 0 auto;
+  padding: 18px 70px;
 
   box-sizing: border-box;
-  background-color: var(--color-tiber);
 }
 
 .header_black {

@@ -3,7 +3,7 @@ import Promo from '../Promo/Promo';
 
 function Main() {
   return (
-    <section>
+    <section className='banner'>
       <Promo />
     </section>
   )
