@@ -1,6 +1,9 @@
 :root {
-  --color-mine-shaft: #202020;
+  --color-shamrock: #3DDC84;
+  --color-mine-shaft-dark: #202020;
+  --color-mine-shaft-light: #303030;
   --color-tiber: #073042;
+  --color-gray: #8B8B8B;
   --transition-time: .2s;
   --opacity-hover: .8;
 }
@@ -13,5 +16,5 @@
   font-style: normal;
   color: white;
 
-  background-color: var(--color-mine-shaft);
+  background-color: var(--color-mine-shaft-dark);
 }

@@ -64,7 +64,7 @@
   font-size: 12px;
   line-height: 16px;
 
-  background-color: #3DDC84;
+  background-color: var(--color-shamrock);
   border-radius: 3px;
   border: none;
   cursor: pointer;
