@@ -53,11 +53,18 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  text-decoration: none;
 
+  cursor: pointer;
   box-sizing: content-box;
   background-color: inherit;
   border: 1px solid #999999;
   border-radius: 3px;
+  transition: opacity var(--transition-time) ease;
+}
+
+.promo__more:hover {
+  opacity: var(--opacity-hover);
 }
 
 @media screen and (min-width: 1280px) {

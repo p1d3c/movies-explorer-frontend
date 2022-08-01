@@ -11,9 +11,9 @@ function Promo() {
         <h2 className='promo__subtitle'>
           Листайте ниже, чтобы узнать больше про этот проект и его создателя.
         </h2>
-        <button className='promo__more'>
+        <a className='promo__more' href='#anchor'>
           Узнать больше
-        </button>
+        </a>
       </div>
       <img className='promo__img' src={web} alt='web' />
     </div>
