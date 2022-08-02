@@ -4,6 +4,9 @@
   --color-mine-shaft-light: #303030;
   --color-tiber: #073042;
   --color-gray: #8B8B8B;
+
+  --font-weight-regular: 400;
+
   --transition-time: .2s;
   --opacity-hover: .8;
 }
