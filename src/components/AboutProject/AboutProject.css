@@ -129,6 +129,12 @@
   }
 }
 
+@media screen and (max-width: 517px) {
+  .project__progress {
+    grid-template-columns: 100px auto;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .project {
     padding: 70px 18px;
