@@ -13,11 +13,11 @@
   margin: 0;
 
   font-weight: var(--font-weight-regular);
-  font-style: 22px;
+  font-size: 22px;
   line-height: 26.63px;
   letter-spacing: -0.04em;
 
-  border-bottom: 1px solid #DADADA;
+  border-bottom: 1px solid #dadada;
   box-sizing: border-box;
 }
 
@@ -104,7 +104,7 @@
     font-size: 22px;
     line-height: 27px;
   }
-  
+
   .project__element {
     max-width: 319px;
   }
@@ -115,7 +115,7 @@
     flex-direction: column;
   }
 
-  .project__element{
+  .project__element {
     margin-bottom: 56px;
   }
 
@@ -125,7 +125,7 @@
   }
 
   .project__line {
-    padding: 9px 10px
+    padding: 9px 10px;
   }
 }
 
