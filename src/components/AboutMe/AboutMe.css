@@ -1,7 +1,7 @@
 .me {
   max-width: 1280px;
   min-height: 608px;
-  padding: 110px 70px;
+  padding: 110px 70px 100px;
   margin: 0 auto;
 
   box-sizing: border-box;
@@ -109,9 +109,6 @@
     font-size: 12px;
     line-height: 18px;
   }
-
-  .me__link {
-  }
 }
 
 @media screen and (max-width: 930px) {
@@ -132,6 +129,10 @@
 @media screen and (max-width: 675px) {
   .me__content {
     flex-direction: column;
+  }
+
+  .me__title {
+    font-size: 30px;
   }
 
   .me__avatar {

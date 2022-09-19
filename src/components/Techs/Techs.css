@@ -92,11 +92,13 @@
   cursor: default;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1090px) {
   .techs {
     padding: 90px 50px;
   }
-  
+}
+
+@media screen and (max-width: 800px) {
   .techs__description {
     min-width: 116px;
     height: 116px;
@@ -147,17 +149,17 @@
   }
 }
 
-@media screen and (max-width: 485px) {
+@media screen and (max-width: 450px) {
+  .techs {
+    padding: 70px 18px;
+  }
+
   .techs__tools {
     max-width: 272px;
   }
 }
 
 @media screen and (max-width: 400px) {
-  .techs {
-    padding: 70px 18px;
-  }
-
   .techs__title {
     font-size: 18px;
     line-height: 22px;
