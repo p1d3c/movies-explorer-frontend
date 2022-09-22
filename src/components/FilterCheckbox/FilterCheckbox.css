@@ -1,0 +1,74 @@
+.filter__wrap {
+  display: flex;
+  gap: 12px;
+}
+
+.filter__span {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.filter__label {
+  display: block;
+  width: 36px;
+  height: 20px;
+  margin: 0;
+  position: relative;
+  user-select: none;
+}
+
+.filter__label .filter__switch {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 36px;
+  height: 20px;
+  border-radius: 20px;
+  vertical-align: top;
+  background: #343434;
+  transition: 0.2s;
+}
+
+.filter__label .filter__switch:before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+  transition: 0.2s;
+}
+
+.filter__label .filter__checkbox {
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+/* 
+.filter__label .filter__checkbox:not(:disabled):active + .filter__switch:before {
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+} */
+
+.filter__label .filter__checkbox:not(:checked) + .filter__switch::before {
+  background-color: #a0a0a0;
+}
+
+.filter__label .filter__checkbox:checked + .filter__switch {
+  background: #3ddc84;
+}
+
+.filter__label .filter__checkbox:checked + .filter__switch:before {
+  transform: translateX(16px);
+}
+
+/* Hover */
+.filter__label .filter__checkbox:not(:disabled) + .filter__switch {
+  cursor: pointer;
+}

@@ -1,9 +1,14 @@
+import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
+import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
 
 function Movies() {
   return (
-    <div>movies</div>
-  )
+    <section className='form'>
+      <SearchForm />
+      <FilterCheckbox />
+    </section>
+  );
 }
 
 export default Movies;
