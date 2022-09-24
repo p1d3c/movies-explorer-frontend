@@ -1,13 +1,25 @@
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  align-items: center;
   max-width: 1280px;
   width: 100%;
   margin: 0 auto;
   padding: 80px 70px 0;
+
   box-sizing: border-box;
+}
+
+.form__border {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  padding-bottom: 39px;
+
+  border-bottom: 1px solid #424242;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 768px) {
@@ -20,5 +32,9 @@
   .form {
     padding: 81px 14px 0;
     gap: 44px;
+  }
+
+  .form__border {
+    padding-bottom: 43px;
   }
 }
