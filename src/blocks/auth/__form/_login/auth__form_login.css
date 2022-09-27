@@ -1,0 +1,9 @@
+.auth__form_login {
+  margin-bottom: 197px;
+}
+
+@media screen and (max-width: 450px) {
+  .auth__form_login {
+    margin-bottom: 285px;
+  }
+}

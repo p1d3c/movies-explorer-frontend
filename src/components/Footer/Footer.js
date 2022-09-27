@@ -4,10 +4,11 @@ import './Footer.css';
 function Footer() {
   const location = useLocation();
 
-  const isProfile = location.pathname === '/profile' ? true : false;
+  const isHidden =
+    location.pathname === '/profile' || location.pathname === '/signin' || location.pathname === '/signup';
 
   return (
-    !isProfile && (
+    !isHidden && (
       <footer className='footer'>
         <h2 className='footer__title'>Учебный проект Яндекс.Практикум x BeatFilm.</h2>
         <div className='footer__wrap'>
