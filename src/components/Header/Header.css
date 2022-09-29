@@ -43,6 +43,8 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  color: white;
+  text-decoration: none;
 
   cursor: pointer;
   box-sizing: border-box;
@@ -55,6 +57,9 @@
 }
 
 .header__login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 76px;
   height: 32px;
   margin: 0;
@@ -63,6 +68,8 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  color: black;
+  text-decoration: none;
 
   background-color: var(--color-shamrock);
   border-radius: 3px;

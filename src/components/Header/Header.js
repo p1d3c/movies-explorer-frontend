@@ -1,26 +1,31 @@
 import './Header.css';
 import logo from '../../images/logo.svg';
 import {Link, useLocation} from 'react-router-dom';
+import Navigation from '../Navigation/Navigation';
 
 function Header() {
   const location = useLocation();
 
-  const isHidden = location.pathname === './signin' || location.pathname === './signup';
-
   return (
-    isHidden && (
-      <header className={`header ${location.pathname === '/' ? '' : 'header_black'}`}>
-        <div className='header__limiter'>
-          <Link to='/'>
-            <img className='header__logo' src={logo} alt='logo' />
-          </Link>
+    <header className={`header ${location.pathname === '/' ? '' : 'header_black'}`}>
+      <div className='header__limiter'>
+        <Link to='/'>
+          <img className='header__logo' src={logo} alt='logo' />
+        </Link>
+        {location.pathname !== '/' ? (
+          <Navigation />
+        ) : (
           <div className='header__container'>
-            <p className='header__register'>Регистрация</p>
-            <button className='header__login'>Войти</button>
+            <Link to='/signup' className='header__register'>
+              Регистрация
+            </Link>
+            <Link to='/signin' className='header__login'>
+              Войти
+            </Link>
           </div>
-        </div>
-      </header>
-    )
+        )}
+      </div>
+    </header>
   );
 }
 
