@@ -4,11 +4,23 @@ function Portfolio(props) {
   return (
     <div className='portfolio'>
       <h2 className='portfolio__heading'>Портфолио</h2>
-      <div className='portfolio__links'>
-        <a className='portfolio__link'>Статичный сайт</a>
-        <a className='portfolio__link'>Адаптивный сайт</a>
-        <a className='portfolio__link'>Одностраничное приложение</a>
-      </div>
+      <ul className='portfolio__links'>
+        <li>
+          <a className='portfolio__link' href='https://p1d3c.github.io/how-to-learn/' target='_blank' rel='noreferrer'>
+            Статичный сайт
+          </a>
+        </li>
+        <li>
+          <a className='portfolio__link' href='https://p1d3c.github.io/russia/' target='_blank' rel='noreferrer'>
+            Адаптивный сайт
+          </a>
+        </li>
+        <li>
+          <a className='portfolio__link' href='https://p1d3c.github.io/mestoProject/' target='_blank' rel='noreferrer'>
+            Одностраничное приложение
+          </a>
+        </li>
+      </ul>
     </div>
   );
 }

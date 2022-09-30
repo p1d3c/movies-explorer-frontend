@@ -31,6 +31,7 @@
 }
 
 .search__input:focus {
+  border-bottom: 1px solid #4285f4;
   outline: none;
 }
 

@@ -9,15 +9,17 @@ function Movies() {
   return (
     <>
       <Header />
-      <section className='form'>
-        <div className='form__border'>
-          <SearchForm />
-          <FilterCheckbox />
-        </div>
-      </section>
-      <section className='list'>
-        <MoviesCardList />
-      </section>
+      <main>
+        <section className='form'>
+          <div className='form__border'>
+            <SearchForm />
+            <FilterCheckbox />
+          </div>
+        </section>
+        <section className='list'>
+          <MoviesCardList />
+        </section>
+      </main>
       <Footer />
     </>
   );

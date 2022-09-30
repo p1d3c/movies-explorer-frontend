@@ -11,21 +11,23 @@ function Main() {
   return (
     <>
       <Header />
-      <section className='banner'>
-        <Promo />
-      </section>
-      <section>
-        <AboutProject />
-      </section>
-      <section className='technologies'>
-        <Techs />
-      </section>
-      <section>
-        <AboutMe />
-      </section>
-      <section>
-        <Portfolio />
-      </section>
+      <main>
+        <section className='banner'>
+          <Promo />
+        </section>
+        <section>
+          <AboutProject />
+        </section>
+        <section className='technologies'>
+          <Techs />
+        </section>
+        <section>
+          <AboutMe />
+        </section>
+        <section>
+          <Portfolio />
+        </section>
+      </main>
       <Footer />
     </>
   );

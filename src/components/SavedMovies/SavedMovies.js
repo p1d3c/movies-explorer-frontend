@@ -9,17 +9,19 @@ function SavedMovies() {
   return (
     <>
       <Header />
-      <section className='saved'>
-        <div className='form'>
-          <div className='form__border'>
-            <SearchForm />
-            <FilterCheckbox />
+      <main>
+        <section className='saved'>
+          <div className='form'>
+            <div className='form__border'>
+              <SearchForm />
+              <FilterCheckbox />
+            </div>
           </div>
-        </div>
-      </section>
-      <section className='list'>
-        <MoviesCardList />
-      </section>
+        </section>
+        <section className='list'>
+          <MoviesCardList />
+        </section>
+      </main>
       <Footer />
     </>
   );
