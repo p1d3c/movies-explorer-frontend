@@ -1,0 +1,147 @@
+.promo {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1280px;
+  min-height: 574px;
+  padding: 75px 70px;
+  margin: 0 auto;
+
+  background-color: var(--color-tiber);
+  box-sizing: border-box;
+}
+
+.promo__container {
+  display: flex;
+  flex-direction: column;
+  max-width: 640px;
+}
+
+.promo__title {
+  margin: 0;
+  margin-bottom: 36px;
+
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+
+  white-space: pre-line;
+}
+
+.promo__subtitle {
+  max-width: 310px;
+  margin: 0;
+
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  
+  opacity: .5;
+}
+
+.promo__img {
+  max-width: 310px;
+  max-height: 304px;
+}
+
+.promo__more {
+  width: 89px;
+  height: 16px;
+  margin-top: 146px;
+  padding: 10px 18px;
+
+  color: white;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-decoration: none;
+
+  cursor: pointer;
+  box-sizing: content-box;
+  background-color: inherit;
+  border: 1px solid #999999;
+  border-radius: 3px;
+  transition: opacity var(--transition-time) ease;
+}
+
+.promo__more:hover {
+  opacity: var(--opacity-hover);
+}
+
+@media screen and (min-width: 1280px) {
+  .promo {
+    padding: 75px auto;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .promo {
+    padding-top: 140px;
+    flex-direction: column;
+  }
+
+  .promo__container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .promo__title {
+    max-width: 680px;
+    margin: 0 auto 22px;
+
+    font-size: 40px;
+    line-height: 50px;
+
+    text-align: center;
+  }
+
+  .promo__title br {
+    display: none;
+  }
+
+  .promo__subtitle {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .promo__img {
+    order: -1;
+    margin: 0 auto 48px;
+  }
+
+  .promo__more {
+    margin: 92px auto 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .promo {
+    padding: 140px 44px 76px;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .promo{
+    padding-top: 70px;
+  }
+
+  .promo__title {
+    font-size: 30px;
+    line-height: 38px;
+    letter-spacing: -0.04em;
+  }
+
+  .promo__img {
+    max-width: 210px;
+    max-height: 206px;
+  }
+
+  .promo__more {
+    margin: 80px auto 0;
+  }
+}
+
+@media screen and (max-width: 378px) {
+  .promo {
+    padding: 70px 10px 30px;
+  }
+}

@@ -1,0 +1,45 @@
+:root {
+  --color-shamrock: #3ddc84;
+  --color-mine-shaft-dark: #202020;
+  --color-mine-shaft-light: #303030;
+  --color-tiber: #073042;
+  --color-gray: #8b8b8b;
+
+  --font-weight-regular: 400;
+
+  --transition-time: 0.2s;
+  --opacity-hover: 0.8;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  color: white;
+
+  background-color: var(--color-mine-shaft-dark);
+}
+
+@import url('../../blocks/card/card.css');
+@import url('../../blocks/card/__img/card__img.css');
+@import url('../../blocks/card/__wrap/card__wrap.css');
+@import url('../../blocks/card/__title/card__title.css');
+@import url('../../blocks/card/__like/card__like.css');
+@import url('../../blocks/card/__duration/card__duration.css');
+
+@import url('../../blocks/auth/auth.css');
+@import url('../../blocks/auth/__logo/auth__logo.css');
+@import url('../../blocks/auth/__title/auth__title.css');
+@import url('../../blocks/auth/__form/auth__form.css');
+@import url('../../blocks/auth/__form/_login/auth__form_login.css');
+@import url('../../blocks/auth/__fieldset/auth__fieldset.css');
+@import url('../../blocks/auth/__label/auth__label.css');
+@import url('../../blocks/auth/__input/auth__input.css');
+@import url('../../blocks/auth/__input/_error/auth__input_error.css');
+@import url('../../blocks/auth/__button/auth__button.css');
+@import url('../../blocks/auth/__text/auth__text.css');
+@import url('../../blocks/auth/__redirect/auth__redirect.css');
