@@ -1,7 +1,7 @@
-import {checkData} from './utils';
+import {checkData, BASE_URL} from './utils';
 
 export const registration = (userData) => {
-  return fetch('http://localhost:3000/signup', {
+  return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -14,7 +14,7 @@ export const registration = (userData) => {
 };
 
 export const authorization = (userData) => {
-  return fetch('http://localhost:3000/signin', {
+  return fetch(`${BASE_URL}/signin`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -27,7 +27,7 @@ export const authorization = (userData) => {
 };
 
 export const getUserData = () => {
-  return fetch('http://localhost:3000/users/me', {
+  return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -48,7 +48,7 @@ export const getUserData = () => {
 };
 
 export const getSavedMovies = () => {
-  return fetch('http://localhost:3000/movies', {
+  return fetch(`${BASE_URL}/movies`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -65,7 +65,7 @@ export const getSavedMovies = () => {
 };
 
 export const updateUserProfile = (userData) => {
-  return fetch('http://localhost:3000/users/me', {
+  return fetch(`${BASE_URL}/users/me`, {
     method: 'PATCH',
     headers: {
       Accept: 'application/json',
@@ -79,7 +79,7 @@ export const updateUserProfile = (userData) => {
 };
 
 export const likeMovie = (movieData) => {
-  return fetch('http://localhost:3000/movies', {
+  return fetch(`${BASE_URL}/movies`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -93,7 +93,7 @@ export const likeMovie = (movieData) => {
 };
 
 export const deleteMovie = (id) => {
-  return fetch(`http://localhost:3000/movies/${id}`, {
+  return fetch(`${BASE_URL}/movies/${id}`, {
     method: 'DELETE',
     headers: {
       Accept: 'application/json',
