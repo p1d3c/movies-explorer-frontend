@@ -1,3 +1,5 @@
+import {useEffect, useRef, useState} from 'react';
+import {getMovies} from '../../utils/MoviesApi';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -5,19 +7,85 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
 
-function Movies() {
+function Movies(props) {
+  const {isPreloaderShown, setIsPreloaderShown, handleLikeMovie, savedMovies, filteredMovies, setFilteredMovies} =
+    props;
+
+  const [isNothingFound, setIsNothingFound] = useState(false);
+  const [isShort, setIsShort] = useState(false);
+
+  const handleSearch = (inputText) => {
+    setIsNothingFound(false);
+    setIsPreloaderShown(true);
+    getMovies()
+      .then((res) => {
+        let data = res.filter((item) => {
+          return item.nameRU.toLowerCase().includes(inputText.toLowerCase());
+        });
+
+        if (isShort) {
+          data = data.filter((item) => item.duration <= 40);
+        }
+
+        for (let i = 0; i < data.length; i++) {
+          for (let j = 0; j < savedMovies.length; j++) {
+            if (data[i].id === savedMovies[j].movieId) {
+              data[i].isLiked = true;
+            }
+          }
+        }
+
+        if (data.length === 0) {
+          setIsNothingFound(true);
+          setFilteredMovies([]);
+          return;
+        }
+
+        setFilteredMovies(data);
+
+        localStorage.setItem(
+          'searchData',
+          JSON.stringify({
+            searchText: inputText,
+            isShort,
+            movies: data,
+          })
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsPreloaderShown(false);
+      });
+  };
+
+  useEffect(() => {
+    const savedMovies = JSON.parse(localStorage.getItem('searchData'));
+    if (!savedMovies) {
+      return;
+    }
+    setFilteredMovies(savedMovies.movies);
+  }, []);
+
   return (
     <>
       <Header />
-      <main>
+      <main className='main'>
         <section className='form'>
           <div className='form__border'>
-            <SearchForm />
-            <FilterCheckbox />
+            <SearchForm handleSearch={handleSearch} setIsPreloaderShown={setIsPreloaderShown} />
+            <FilterCheckbox isShort={isShort} setIsShort={setIsShort} />
           </div>
         </section>
         <section className='list'>
-          <MoviesCardList />
+          <MoviesCardList
+            movies={filteredMovies}
+            isPreloaderShown={isPreloaderShown}
+            isSaved={false}
+            handleLikeMovie={handleLikeMovie}
+          />
+          {isNothingFound && <h1 className='list__nothing'>Ничего не найдено</h1>}
         </section>
       </main>
       <Footer />

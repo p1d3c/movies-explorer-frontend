@@ -1,7 +1,9 @@
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import './Navigation.css';
 
 function Navigation() {
+  const location = useLocation();
+
   return (
     <nav className='nav'>
       <input id='burger' type='checkbox' className='nav__input' />
@@ -33,7 +35,10 @@ function Navigation() {
           Сохранённые фильмы
         </Link>
       </div>
-      <Link to='/profile' className='nav__link nav__link_profile'>
+      <Link
+        to='/profile'
+        className={`nav__link nav__link_profile ${location.pathname === '/' ? 'nav__link_main' : ''}`}
+      >
         Аккаунт
       </Link>
     </nav>

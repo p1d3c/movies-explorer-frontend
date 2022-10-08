@@ -2,8 +2,11 @@ import './Header.css';
 import logo from '../../images/logo.svg';
 import {Link, useLocation} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
+import {useContext} from 'react';
+import {IsLoggedInContext} from '../../contexts/IsLoggedInContext';
 
 function Header() {
+  const isLoggedIn = useContext(IsLoggedInContext);
   const location = useLocation();
 
   return (
@@ -12,7 +15,7 @@ function Header() {
         <Link to='/'>
           <img className='header__logo' src={logo} alt='logo' />
         </Link>
-        {location.pathname !== '/' ? (
+        {isLoggedIn ? (
           <Navigation />
         ) : (
           <div className='header__container'>

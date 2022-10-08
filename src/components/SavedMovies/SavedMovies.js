@@ -5,21 +5,28 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './SavedMovies.css';
 
-function SavedMovies() {
+function SavedMovies(props) {
+  const {isPreloaderShown, setIsPreloaderShown, movies, handleDeleteMovie} = props;
+
   return (
     <>
       <Header />
-      <main>
+      <main className='main'>
         <section className='saved'>
           <div className='form'>
             <div className='form__border'>
-              <SearchForm />
+              <SearchForm setIsPreloaderShown={setIsPreloaderShown} />
               <FilterCheckbox />
             </div>
           </div>
         </section>
         <section className='list'>
-          <MoviesCardList />
+          <MoviesCardList
+            movies={movies}
+            isPreloaderShown={isPreloaderShown}
+            isSaved={true}
+            handleDeleteMovie={handleDeleteMovie}
+          />
         </section>
       </main>
       <Footer />
