@@ -20,6 +20,8 @@ function App() {
   const [isPreloaderShown, setIsPreloaderShown] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
+  const [isShort, setIsShort] = useState(false);
+  const [isNothingFound, setIsNothingFound] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -28,7 +30,7 @@ function App() {
 
     if (token) {
       setIsLoggedIn(true);
-      navigate(localStorage.getItem('page'));
+      navigate(location.pathname);
     }
   };
 
@@ -36,11 +38,11 @@ function App() {
     registration(userData)
       .then((res) => {
         if (!res.message) {
-          navigate('/signin');
           setApiError({
             ...apiError,
             regError: '',
           });
+          handleAuthorize(userData);
           return;
         }
 
@@ -54,7 +56,8 @@ function App() {
       });
   };
 
-  const handleAuthorize = (userData) => {
+  const handleAuthorize = ({email, password}) => {
+    const userData = {email, password};
     authorization(userData)
       .then((res) => {
         if (!res.message) {
@@ -116,10 +119,6 @@ function App() {
 
   useEffect(() => {
     checkToken();
-
-    return () => {
-      localStorage.setItem('page', location.pathname);
-    };
   }, []);
 
   useEffect(() => {
@@ -168,6 +167,10 @@ function App() {
                     savedMovies={savedMovies}
                     filteredMovies={filteredMovies}
                     setFilteredMovies={setFilteredMovies}
+                    isShort={isShort}
+                    setIsShort={setIsShort}
+                    isNothingFound={isNothingFound}
+                    setIsNothingFound={setIsNothingFound}
                   />
                 </ProtectedRoute>
               }
@@ -178,9 +181,14 @@ function App() {
                 <ProtectedRoute isLoggedIn={isLoggedIn} redirectTo='/'>
                   <SavedMovies
                     movies={savedMovies}
+                    setSavedMovies={setSavedMovies}
                     isPreloaderShown={isPreloaderShown}
                     setIsPreloaderShown={setIsPreloaderShown}
                     handleDeleteMovie={handleDeleteMovie}
+                    isShort={isShort}
+                    setIsShort={setIsShort}
+                    isNothingFound={isNothingFound}
+                    setIsNothingFound={setIsNothingFound}
                   />
                 </ProtectedRoute>
               }

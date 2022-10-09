@@ -15,3 +15,4 @@ export const urlRegExp = new RegExp(
 );
 
 export const BASE_URL = 'https://api.p1d3c.moviesexplorer.nomoredomains.icu';
+// export const BASE_URL = 'http://localhost:3000';

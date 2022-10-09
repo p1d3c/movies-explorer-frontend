@@ -27,7 +27,7 @@
 }
 
 .list__nothing {
-  margin: 0 auto;
+  margin: 30px auto 0;
 
   font-weight: var(--font-weight-regular);
   font-size: 50px;

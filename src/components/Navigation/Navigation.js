@@ -13,13 +13,13 @@ function Navigation() {
         <div className='nav__content'>
           <ul id='menu'>
             <Link to='/' className='nav__link'>
-              <li>Главная</li>
+              <li className={location.pathname === '/' ? 'nav__border' : ''}>Главная</li>
             </Link>
             <Link to='/movies' className='nav__link'>
-              <li className='nav__border'>Фильмы</li>
+              <li className={location.pathname === '/movies' ? 'nav__border' : ''}>Фильмы</li>
             </Link>
             <Link to='/saved-movies' className='nav__link'>
-              <li>Сохранённые фильмы</li>
+              <li className={location.pathname === '/saved-movies' ? 'nav__border' : ''}>Сохранённые фильмы</li>
             </Link>
           </ul>
           <Link to='/profile' className='nav__link nav__link_profile-menu'>
@@ -28,10 +28,13 @@ function Navigation() {
         </div>
       </div>
       <div className='nav__wrap'>
-        <Link to='/movies' className='nav__link nav__link_active'>
+        <Link to='/movies' className={`nav__link ${location.pathname === '/movies' ? 'nav__link_active' : ''}`}>
           Фильмы
         </Link>
-        <Link to='/saved-movies' className='nav__link'>
+        <Link
+          to='/saved-movies'
+          className={`nav__link ${location.pathname === '/saved-movies' ? 'nav__link_active' : ''}`}
+        >
           Сохранённые фильмы
         </Link>
       </div>

@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from 'react';
+import {useEffect} from 'react';
 import {getMovies} from '../../utils/MoviesApi';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import Footer from '../Footer/Footer';
@@ -8,11 +8,18 @@ import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
 
 function Movies(props) {
-  const {isPreloaderShown, setIsPreloaderShown, handleLikeMovie, savedMovies, filteredMovies, setFilteredMovies} =
-    props;
-
-  const [isNothingFound, setIsNothingFound] = useState(false);
-  const [isShort, setIsShort] = useState(false);
+  const {
+    isPreloaderShown,
+    setIsPreloaderShown,
+    handleLikeMovie,
+    savedMovies,
+    filteredMovies,
+    setFilteredMovies,
+    isShort,
+    setIsShort,
+    isNothingFound,
+    setIsNothingFound,
+  } = props;
 
   const handleSearch = (inputText) => {
     setIsNothingFound(false);
@@ -79,13 +86,16 @@ function Movies(props) {
           </div>
         </section>
         <section className='list'>
-          <MoviesCardList
-            movies={filteredMovies}
-            isPreloaderShown={isPreloaderShown}
-            isSaved={false}
-            handleLikeMovie={handleLikeMovie}
-          />
-          {isNothingFound && <h1 className='list__nothing'>Ничего не найдено</h1>}
+          {isNothingFound ? (
+            <h1 className='list__nothing'>Ничего не найдено</h1>
+          ) : (
+            <MoviesCardList
+              movies={filteredMovies}
+              isPreloaderShown={isPreloaderShown}
+              isSaved={false}
+              handleLikeMovie={handleLikeMovie}
+            />
+          )}
         </section>
       </main>
       <Footer />

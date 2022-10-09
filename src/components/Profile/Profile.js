@@ -2,7 +2,7 @@ import './Profile.css';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import Header from '../Header/Header';
-import {useContext, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import {updateUserProfile} from '../../utils/MainApi';
 
@@ -12,6 +12,7 @@ function Profile(props) {
   const currentUser = useContext(CurrentUserContext);
   const [isSaveBtnHidden, setIsSaveBtnHidden] = useState(false);
   const [apiError, setApiError] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const validationSchema = yup.object().shape({
     name: yup
@@ -30,6 +31,7 @@ function Profile(props) {
     updateUserProfile(userData)
       .then((res) => {
         if (res.data) {
+          setIsSuccess(true);
           setApiError('');
           handleEditProfile(res.data.name, res.data.email);
           handleEdit();
@@ -44,10 +46,16 @@ function Profile(props) {
       });
   };
 
+  useEffect(() => {
+    return () => {
+      setIsSuccess(false);
+    };
+  }, []);
+
   return (
     <>
       <Header />
-      <main>
+      <main className='main'>
         <section className='profile'>
           <Formik
             initialValues={{
@@ -104,6 +112,11 @@ function Profile(props) {
                     <p className='profile__error' hidden={!isSaveBtnHidden}>
                       {apiError || errors.name || errors.email}
                     </p>
+                    {isSuccess && (
+                      <p className='profile__success' hidden={isSaveBtnHidden}>
+                        Изменения сохранены
+                      </p>
+                    )}
                     <button type='button' className='profile__button' hidden={isSaveBtnHidden} onClick={handleEdit}>
                       Редактировать
                     </button>

@@ -43,7 +43,6 @@ function SearchForm(props) {
           name='search'
           value={inputValue.search}
           onChange={handleChange}
-          required
         />
         <button className='search__button'>Найти</button>
       </form>
