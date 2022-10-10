@@ -11,6 +11,7 @@ function MoviesCard(props) {
 
   const onLikeClick = () => {
     if (isLiked || isLikeActive) {
+      handleDeleteMovie(movie);
       return;
     }
 
@@ -31,7 +32,7 @@ function MoviesCard(props) {
   };
 
   const onDeleteClick = () => {
-    handleDeleteMovie(movie._id);
+    handleDeleteMovie(movie);
   };
 
   return (

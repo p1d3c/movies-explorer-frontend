@@ -12,6 +12,7 @@ function Movies(props) {
     isPreloaderShown,
     setIsPreloaderShown,
     handleLikeMovie,
+    handleDeleteMovie,
     savedMovies,
     filteredMovies,
     setFilteredMovies,
@@ -68,11 +69,20 @@ function Movies(props) {
   };
 
   useEffect(() => {
-    const savedMovies = JSON.parse(localStorage.getItem('searchData'));
-    if (!savedMovies) {
+    const storageData = JSON.parse(localStorage.getItem('searchData'));
+    if (!storageData) {
       return;
     }
-    setFilteredMovies(savedMovies.movies);
+
+    for (let i = 0; i < storageData.movies.length; i++) {
+      for (let j = 0; j < savedMovies.length; j++) {
+        if (storageData.movies[i].id === savedMovies[j].movieId) {
+          storageData.movies[i].isLiked = true;
+        }
+      }
+    }
+
+    setFilteredMovies(storageData.movies);
   }, []);
 
   return (
@@ -94,6 +104,7 @@ function Movies(props) {
               isPreloaderShown={isPreloaderShown}
               isSaved={false}
               handleLikeMovie={handleLikeMovie}
+              handleDeleteMovie={handleDeleteMovie}
             />
           )}
         </section>

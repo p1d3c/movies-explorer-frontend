@@ -56,11 +56,7 @@ export const getSavedMovies = () => {
       Authorization: `Bearer ${localStorage.getItem('jwt')}`,
     },
   }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-
-    Promise.reject(`Ошибка ${res.status}`);
+    return checkData(res);
   });
 };
 

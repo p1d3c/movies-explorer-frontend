@@ -29,9 +29,29 @@ function App() {
     const token = localStorage.getItem('jwt');
 
     if (token) {
-      setIsLoggedIn(true);
-      navigate(location.pathname);
+      getUserData()
+        .then((res) => {
+          if (res.message === 'Необходима авторизация') {
+            handleLogOut();
+            return;
+          }
+
+          setCurrentUser({
+            ...currentUser,
+            name: res.data.name,
+            email: res.data.email,
+            id: res.data._id,
+          });
+          setIsLoggedIn(true);
+          navigate(location.pathname);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
+
+    localStorage.removeItem('searchData');
+    localStorage.removeItem('jwt');
   };
 
   const handleRegister = (userData) => {
@@ -86,6 +106,8 @@ function App() {
     localStorage.removeItem('searchData');
     setIsLoggedIn(undefined);
     setCurrentUser({});
+    setSavedMovies([]);
+    setFilteredMovies([]);
     navigate('/');
   };
 
@@ -98,8 +120,40 @@ function App() {
   };
 
   const handleLikeMovie = (movieData) => {
+    if (!localStorage.getItem('jwt')) {
+      handleLogOut();
+      return;
+    }
+
+    delete movieData.isLiked;
+
     likeMovie(movieData)
       .then((res) => {
+        if (res.message === 'Необходима авторизация') {
+          handleLogOut();
+          return;
+        }
+
+        setFilteredMovies((movies) =>
+          movies.map((m) => {
+            if (m.id === movieData.movieId) {
+              m.isLiked = true;
+            }
+
+            return m;
+          })
+        );
+
+        const inputValue = document.forms[0][0].value;
+        localStorage.setItem(
+          'searchData',
+          JSON.stringify({
+            searchText: inputValue,
+            isShort,
+            movies: filteredMovies,
+          })
+        );
+
         setSavedMovies((prev) => [...prev, res.newMovie]);
       })
       .catch((err) => {
@@ -107,10 +161,51 @@ function App() {
       });
   };
 
-  const handleDeleteMovie = (id) => {
-    deleteMovie(id)
-      .then(() => {
-        setSavedMovies((movies) => movies.filter((m) => m._id !== id));
+  const handleDeleteMovie = (movie) => {
+    if (!localStorage.getItem('jwt')) {
+      handleLogOut();
+      return;
+    }
+
+    if (movie.id) {
+      console.log(movie);
+      const movieToDelete = savedMovies.find((item) => {
+        if (item.movieId === movie.id) {
+          return item;
+        }
+      });
+
+      deleteMovie(movieToDelete._id)
+        .then((res) => {
+          if (res.message === 'Необходима авторизация') {
+            handleLogOut();
+            return;
+          }
+
+          setFilteredMovies((filteredMovies) => {
+            return filteredMovies.map((m) => {
+              if (m.id === movie.id) {
+                m.isLiked = false;
+              }
+              return m;
+            });
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      return;
+    }
+
+    deleteMovie(movie._id)
+      .then((res) => {
+        if (res.message === 'Необходима авторизация') {
+          handleLogOut();
+          return;
+        }
+
+        setSavedMovies((movies) => movies.filter((m) => m._id !== movie._id));
       })
       .catch((err) => {
         console.log(err);
@@ -146,9 +241,14 @@ function App() {
     }
 
     getSavedMovies().then((res) => {
-      setSavedMovies(res.data);
+      if (res.message === 'Необходима авторизация') {
+        handleLogOut();
+        return;
+      }
+
+      setSavedMovies(() => res.data.filter((m) => m.owner === currentUser.id));
     });
-  }, [isLoggedIn]);
+  }, [isLoggedIn, currentUser]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -164,6 +264,7 @@ function App() {
                     isPreloaderShown={isPreloaderShown}
                     setIsPreloaderShown={setIsPreloaderShown}
                     handleLikeMovie={handleLikeMovie}
+                    handleDeleteMovie={handleDeleteMovie}
                     savedMovies={savedMovies}
                     filteredMovies={filteredMovies}
                     setFilteredMovies={setFilteredMovies}

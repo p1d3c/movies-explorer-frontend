@@ -28,8 +28,18 @@ function Profile(props) {
   };
 
   const handleSaveChanges = (userData) => {
+    if (!localStorage.getItem('jwt')) {
+      handleLogOut();
+      return;
+    }
+
     updateUserProfile(userData)
       .then((res) => {
+        if (res.message === 'Необходима авторизация') {
+          handleLogOut();
+          return;
+        }
+
         if (res.data) {
           setIsSuccess(true);
           setApiError('');
