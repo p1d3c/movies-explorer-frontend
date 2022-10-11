@@ -12,6 +12,7 @@ import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import {authorization, deleteMovie, getSavedMovies, getUserData, likeMovie, registration} from '../../utils/MainApi';
 import {IsLoggedInContext} from '../../contexts/IsLoggedInContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import {jwtRegExp} from '../../utils/utils';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,6 +28,11 @@ function App() {
 
   const checkToken = () => {
     const token = localStorage.getItem('jwt');
+
+    if (token && !token.match(jwtRegExp)) {
+      handleLogOut();
+      return;
+    }
 
     if (token) {
       getUserData()
@@ -49,9 +55,6 @@ function App() {
           console.log(err);
         });
     }
-
-    localStorage.removeItem('searchData');
-    localStorage.removeItem('jwt');
   };
 
   const handleRegister = (userData) => {
