@@ -1,4 +1,5 @@
-import {checkData, BASE_URL} from './utils';
+import {checkData} from './utils';
+import {BASE_URL} from './constants';
 
 export const registration = (userData) => {
   return fetch(`${BASE_URL}/signup`, {

@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {urlRegExp} from '../../utils/utils';
+import {URL_REG_EXP} from '../../utils/constants';
 
 function MoviesCard(props) {
   const {movie, isSaved, handleLikeMovie, handleDeleteMovie} = props;
@@ -18,7 +18,7 @@ function MoviesCard(props) {
     setIsLikeActive(true);
 
     const movieData = Object.assign({}, movie);
-    movieData.trailerLink = movieData.trailerLink.match(urlRegExp)
+    movieData.trailerLink = movieData.trailerLink.match(URL_REG_EXP)
       ? movieData.trailerLink
       : 'https://www.youtube.com/watch?v=MbnZtG-rZdk';
     movieData.movieId = movie.id;

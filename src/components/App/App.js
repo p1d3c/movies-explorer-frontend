@@ -12,7 +12,7 @@ import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import {authorization, deleteMovie, getSavedMovies, getUserData, likeMovie, registration} from '../../utils/MainApi';
 import {IsLoggedInContext} from '../../contexts/IsLoggedInContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import {jwtRegExp} from '../../utils/utils';
+import {AUTH_ERROR_MESSAGE, JWT_REG_EXP} from '../../utils/constants';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,7 +29,12 @@ function App() {
   const checkToken = () => {
     const token = localStorage.getItem('jwt');
 
-    if (token && !token.match(jwtRegExp)) {
+    if (!token) {
+      handleLogOut();
+      return;
+    }
+
+    if (token && !token.match(JWT_REG_EXP)) {
       handleLogOut();
       return;
     }
@@ -37,7 +42,7 @@ function App() {
     if (token) {
       getUserData()
         .then((res) => {
-          if (res.message === 'Необходима авторизация') {
+          if (res.message === AUTH_ERROR_MESSAGE) {
             handleLogOut();
             return;
           }
@@ -132,7 +137,7 @@ function App() {
 
     likeMovie(movieData)
       .then((res) => {
-        if (res.message === 'Необходима авторизация') {
+        if (res.message === AUTH_ERROR_MESSAGE) {
           handleLogOut();
           return;
         }
@@ -171,7 +176,6 @@ function App() {
     }
 
     if (movie.id) {
-      console.log(movie);
       const movieToDelete = savedMovies.find((item) => {
         if (item.movieId === movie.id) {
           return item;
@@ -180,7 +184,7 @@ function App() {
 
       deleteMovie(movieToDelete._id)
         .then((res) => {
-          if (res.message === 'Необходима авторизация') {
+          if (res.message === AUTH_ERROR_MESSAGE) {
             handleLogOut();
             return;
           }
@@ -189,10 +193,22 @@ function App() {
             return filteredMovies.map((m) => {
               if (m.id === movie.id) {
                 m.isLiked = false;
+
+                const inputValue = document.forms[0][0].value;
+                localStorage.setItem(
+                  'searchData',
+                  JSON.stringify({
+                    searchText: inputValue,
+                    isShort,
+                    movies: filteredMovies,
+                  })
+                );
               }
               return m;
             });
           });
+
+          setSavedMovies((movies) => movies.filter((m) => m.movieId !== movie.id));
         })
         .catch((err) => {
           console.log(err);
@@ -203,12 +219,32 @@ function App() {
 
     deleteMovie(movie._id)
       .then((res) => {
-        if (res.message === 'Необходима авторизация') {
+        if (res.message === AUTH_ERROR_MESSAGE) {
           handleLogOut();
           return;
         }
 
         setSavedMovies((movies) => movies.filter((m) => m._id !== movie._id));
+
+        setFilteredMovies((filteredMovies) => {
+          return filteredMovies.map((m) => {
+            if (m.id === movie.movieId) {
+              m.isLiked = false;
+            }
+
+            const searchData = JSON.parse(localStorage.getItem('searchData'));
+            localStorage.setItem(
+              'searchData',
+              JSON.stringify({
+                searchText: searchData.searchText,
+                isShort: searchData.isShort,
+                movies: filteredMovies,
+              })
+            );
+
+            return m;
+          });
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -244,7 +280,7 @@ function App() {
     }
 
     getSavedMovies().then((res) => {
-      if (res.message === 'Необходима авторизация') {
+      if (res.message === AUTH_ERROR_MESSAGE) {
         handleLogOut();
         return;
       }

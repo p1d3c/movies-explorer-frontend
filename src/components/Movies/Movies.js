@@ -1,4 +1,5 @@
 import {useEffect} from 'react';
+import {SHORT_DURAION} from '../../utils/constants';
 import {getMovies} from '../../utils/MoviesApi';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import Footer from '../Footer/Footer';
@@ -32,7 +33,7 @@ function Movies(props) {
         });
 
         if (isShort) {
-          data = data.filter((item) => item.duration <= 40);
+          data = data.filter((item) => item.duration <= SHORT_DURAION);
         }
 
         for (let i = 0; i < data.length; i++) {
@@ -83,6 +84,7 @@ function Movies(props) {
     }
 
     setFilteredMovies(storageData.movies);
+    setIsShort(storageData.isShort);
   }, []);
 
   return (

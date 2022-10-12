@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import {useContext, useEffect, useState} from 'react';
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import {updateUserProfile} from '../../utils/MainApi';
+import {AUTH_ERROR_MESSAGE} from '../../utils/constants';
 
 function Profile(props) {
   const {handleLogOut, handleEditProfile} = props;
@@ -35,7 +36,7 @@ function Profile(props) {
 
     updateUserProfile(userData)
       .then((res) => {
-        if (res.message === 'Необходима авторизация') {
+        if (res.message === AUTH_ERROR_MESSAGE) {
           handleLogOut();
           return;
         }
