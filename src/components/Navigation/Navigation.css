@@ -21,6 +21,12 @@
   line-height: 18px;
   color: white;
   text-decoration: none;
+
+  transition: opacity var(--transition-time) ease;
+}
+
+.nav__link:hover {
+  opacity: var(--opacity-hover);
 }
 
 .nav__link_active {
@@ -40,6 +46,11 @@
 
   border-radius: 20px;
   background-color: #313131;
+}
+
+.nav__link_main {
+  color: black;
+  background-color: var(--color-shamrock);
 }
 
 .nav__input {

@@ -1,0 +1,11 @@
+.auth__error {
+  position: absolute;
+
+  display: inline-block;
+  margin: 48px 0 0;
+
+  font-weight: var(--font-weight-regular);
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+}

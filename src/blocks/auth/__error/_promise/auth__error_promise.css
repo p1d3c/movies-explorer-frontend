@@ -1,0 +1,13 @@
+.auth__error_promise {
+  position: relative;
+  top: -105px;
+  left: 0;
+
+  margin: 0;
+
+  font-weight: var(--font-weight-regular);
+  font-size: 11px;
+  line-height: 13px;
+  color: #ee3465;
+  text-align: center;
+}

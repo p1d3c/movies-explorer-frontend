@@ -19,6 +19,13 @@
   opacity: var(--opacity-hover);
 }
 
+.auth__button:disabled {
+  color: #c2c2c2;
+
+  cursor: not-allowed;
+  background-color: #f8f8f8;
+}
+
 @media screen and (max-width: 450px) {
   .auth__button {
     font-size: 12px;
