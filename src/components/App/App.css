@@ -28,7 +28,10 @@
 @import url('../../blocks/card/__img/card__img.css');
 @import url('../../blocks/card/__wrap/card__wrap.css');
 @import url('../../blocks/card/__title/card__title.css');
+@import url('../../blocks/card/__link/card__link.css');
 @import url('../../blocks/card/__like/card__like.css');
+@import url('../../blocks/card/__like/_active/card__like_active.css');
+@import url('../../blocks/card/__delete/card__delete.css');
 @import url('../../blocks/card/__duration/card__duration.css');
 
 @import url('../../blocks/auth/auth.css');
@@ -41,5 +44,7 @@
 @import url('../../blocks/auth/__input/auth__input.css');
 @import url('../../blocks/auth/__input/_error/auth__input_error.css');
 @import url('../../blocks/auth/__button/auth__button.css');
+@import url('../../blocks/auth/__error/auth__error.css');
+@import url('../../blocks/auth/__error/_promise/auth__error_promise.css');
 @import url('../../blocks/auth/__text/auth__text.css');
 @import url('../../blocks/auth/__redirect/auth__redirect.css');

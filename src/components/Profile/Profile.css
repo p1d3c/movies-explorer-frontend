@@ -1,4 +1,5 @@
 .profile {
+  height: 100%;
   padding: 0 30px;
 }
 
@@ -59,15 +60,43 @@
   outline: none;
 }
 
+.profile__input_error {
+  color: #ee3465;
+}
+
+.profile__error {
+  position: relative;
+
+  display: block;
+  margin: -120px 0 0;
+
+  font-weight: var(--font-weight-regular);
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  text-align: center;
+}
+
 .profile__wrap {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-top: 204px;
+  margin-top: 224px;
   margin-bottom: 70px;
 }
 
+.profile__success {
+  margin: 0;
+
+  font-weight: var(--font-weight-regular);
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: var(--color-shamrock);
+}
+
 .profile__button {
+  margin: 0;
   padding: 0;
 
   font-weight: var(--font-weight-regular);
@@ -75,8 +104,18 @@
   line-height: 16px;
   color: white;
 
+  cursor: pointer;
   border: 0;
   background-color: inherit;
+  transition: opacity 0.2s ease;
+}
+
+.profile__button:last-child {
+  margin-top: 0;
+}
+
+.profile__button:hover {
+  opacity: 0.8;
 }
 
 .profile__button_logout {
@@ -84,8 +123,76 @@
   color: #ee3465;
 }
 
+.profile__save {
+  width: 100%;
+  height: 45px;
+  padding: 13px 0 15px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: white;
+
+  cursor: pointer;
+  border: 0;
+  border-radius: 3px;
+  background-color: #4285f4;
+  transition: opacity var(--transition-time) ease;
+}
+
+.profile__save:hover {
+  opacity: var(--opacity-hover);
+}
+
+.profile__save:disabled {
+  color: #c2c2c2;
+
+  cursor: not-allowed;
+  background-color: #f8f8f8;
+}
+
+.profile__save:disabled:hover {
+  opacity: 1;
+}
+
+.profile__back {
+  width: 50px;
+  margin: 0 auto;
+  padding: 0;
+
+  font-weight: var(--font-weight-regular);
+  font-size: 14px;
+  line-height: 17px;
+  color: #4285f4;
+  text-align: center;
+
+  cursor: pointer;
+  border: 0;
+  background-color: inherit;
+  transition: opacity var(--transition-time) ease;
+}
+
+.profile__back:hover {
+  opacity: var(--opacity-hover);
+}
+
 @media screen and (max-width: 450px) {
   .profile__button {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .profile__save {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .profile__back {
+    font-size: 12px;
+    height: 15px;
+  }
+
+  .profile__success {
     font-size: 12px;
     line-height: 15px;
   }
